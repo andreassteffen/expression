@@ -31,11 +31,14 @@ const lineStyle = {
 }
 const medianStyle = {
   stroke:"white",
-  strokeWidth:"2"
+  strokeWidth:1
 }
 const rectStyle = {
   fill:"black",
   strokeWidth:"1"
+}
+const labelStyle = {
+  cursor:"pointer"
 }
 class BoxPlot extends React.Component {
   componentWillMount() {
@@ -72,7 +75,7 @@ class App extends React.Component {
       <div style={chartStyle}>
         <VictoryChart   domain={{y:[0, 60]}}           domainPadding = {40}>
         <VictoryAxis orientation="bottom" 
-                         tickLabelComponent={<VictoryLabel events={{onClick: (evt) => alert("x: " + evt.clientX)}} dx={-5} dy={-0.1} textAnchor="start" verticalAnchor="middle" angle={90}/>}
+                         tickLabelComponent={<VictoryLabel style={labelStyle} events={{onClick: (evt) => alert("x: " + evt.clientX)}} dx={-5} dy={-0.1} textAnchor="start" verticalAnchor="middle" angle={90}/>}
                     />
                     <VictoryAxis dependentAxis />
           <VictoryCandlestick
