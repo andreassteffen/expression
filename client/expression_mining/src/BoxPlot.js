@@ -9,7 +9,7 @@ const medianStyle = {
   strokeWidth:1
 }
 const rectStyle = {
-  fill:"black",
+  fill:"blue",
   strokeWidth:"1"
 }
 

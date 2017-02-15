@@ -2,12 +2,16 @@
 # as a demonstration of an API spec in YAML
 swagger: '2.0'
 info:
-  title: exwife
+  title: expressoh
   description: expression with fun and enthusiasm
   version: "1.0.0"
+# the domain of the service
+host: 0.0.0.0
+# array of all schemes that your API supports
 schemes:
   - http
 # will be prefixed to all paths
+basePath: /api
 produces:
   - application/json
 paths:
