@@ -2,6 +2,7 @@ import React from 'react';
 import { VictoryBar, VictoryChart, VictoryLabel, VictoryAxis,VictoryTheme,  VictoryCandlestick }  from 'victory';
 import BoxPlot from './BoxPlot';
 
+/*
 const data = [
               {x: 'kidney', open: 5, close: 40, high: 45, low: 3, outlier: [17,23,43]},
               {x: 'lung', open: 10, close: 15, high: 20, low: 5, outlier: [17,23,43]},
@@ -16,6 +17,7 @@ const data = [
               {x: 'liver', open: 10, close: 15, high: 20, low: 5, outlier: [17,23,43]},
               {x: 'pancreas', open: 15, close: 20, high: 25, low: 10, outlier: [17,23,43]}
              ]
+*/
 
 const chartStyle={
   width: "800px"
@@ -27,6 +29,20 @@ const labelStyle = {
 }
 
 class App extends React.Component {
+  constructor(props){
+    super(props);
+    this.state = {data: []}
+  }
+  componentDidMount(){
+    fetch('api/expression/KRAS')
+    .then((response) => {
+      return response.json();
+    })
+    .then( (data) => {
+        console.log(data);
+        this.setState({data:data})
+    });
+  }
   render() {
     return (
       <div style={chartStyle}>
@@ -36,7 +52,7 @@ class App extends React.Component {
                     />
                     <VictoryAxis dependentAxis  tickLabelComponent={<VictoryLabel dx={5} style={labelStyle}/>}/>
           <VictoryCandlestick
-            data={data}
+            data={this.state.data}
             dataComponent={<BoxPlot />}
           />
 
