@@ -11,4 +11,4 @@ def calc_whisker(data):
 	whiskhi = list(pd.np.compress(data.expression >= hival, data.expression))
 	whisklo = list(pd.np.compress(data.expression <= loval, data.expression))
 	
-	return pd.Series({'open':Q1, 'median': median, 'high': Q3, 'low': loval, 'high': hival, 'outliers': whiskhi+whisklo })
+	return pd.Series({'open':Q1, 'close': Q3, 'median': median, 'high': hival, 'low': loval, 'high': hival, 'outliers': whiskhi+whisklo })

@@ -16,8 +16,9 @@ class expression(Resource):
 	def get(self, symbol):
 		app.logger.info('shit')	
 		conn = get_db()
-		expression = pd.read_sql("SELECT e.celllinename, e.symbol, e.expression, a.site_primary, a.histology, a.hist_subtype1 FROM expression e JOIN annotation a ON e.annotation_id=a.id WHERE symbol = '{}'".format(symbol), conn)
-		expression = expression.groupby('site_primary').apply(calc_whisker).reset_index()
+		expression = pd.read_sql("SELECT e.celllinename, e.symbol, e.expression, a.site_primary as x, a.histology, a.hist_subtype1 FROM expression e JOIN annotation a ON e.annotation_id=a.id WHERE symbol = '{}'".format(symbol), conn)
+		expression = expression.groupby('x').apply(calc_whisker).reset_index()
+		expression.x = expression.x.str.replace('_',' ')
 		expression = expression.to_dict(orient = 'records')
 		return expression or ('Not found', 404)
 

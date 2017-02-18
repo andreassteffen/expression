@@ -2,15 +2,16 @@ import React from 'react';
 
 const lineStyle = {
   stroke:"black",
-  strokeWidth:"1"
+  strokeWidth:"0.5"
 }
 const medianStyle = {
-  stroke:"white",
-  strokeWidth:1
+  stroke:"black",
+  strokeWidth:0.7
 }
 const rectStyle = {
-  fill:"blue",
-  strokeWidth:"1"
+  fill:"#1FDA9A",
+  strokeWidth:"0.5",  
+  stroke:"black"
 }
 
 class BoxPlot extends React.Component {
@@ -24,8 +25,10 @@ class BoxPlot extends React.Component {
     const style =  props.style;
     const padding = props.padding.left || props.padding;
     const candleWidth = style.width || 0.5 * (width - 2 * padding) / data.length;
+    console.log("candleWidth", candleWidth)
     return { style, candleWidth };
   }
+
   render() {
     const {x, y, y1, y2, candleHeight, width, scale, datum} = this.props;
     return (
